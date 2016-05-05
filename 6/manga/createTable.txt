@@ -1,0 +1,29 @@
+/* 作成したテーブル */
+CREATE TABLE book_data (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(200),
+    author VARCHAR(100),
+    manufacturer VARCHAR(100),
+    imgM VARCHAR(200),
+    imgL VARCHAR(200),
+    searchName VARCHAR(100)
+);
+
+CREATE TABLE book_evaluations (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    book_id INT,
+    story INT,
+    drawing_skill INT,
+    chara_appeal INT,
+    world_view INT,
+    body TEXT,
+    created DATETIME DEFAULT NULL
+);
+
+CREATE TABLE search_names (
+	id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	name VARCHAR(100)
+);
+
+INSERT INTO book_data (title, author, manufacturer, imgURL)
+    VALUES ('ドラゴンボール コミック 全42巻完結セット (ジャンプ・コミックス)', '鳥山 明', '集英社', 'http://ecx.images-amazon.com/images/I/51ytPUh60bL._SL160_.jpg');
