@@ -42,12 +42,9 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
     </head>
     <body onload="displayPieChart();">
         <div id="container">
-           <!--
             <div id="header">
-                <h1><?php echo $this->Html->link($cakeDescription, 'http://cakephp.org'); ?></h1>
+                <h1><?php echo $this->Html->link('漫画評価サイト', '/'); ?></h1>
             </div>
-            -->
-            <div id="header">漫画評価サイト</div>
             <div id="content">
                 <?php echo $this->Flash->render(); ?>
                 <?php echo $this->fetch('content'); ?>
@@ -74,29 +71,6 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                 });
             }); 
             
-            function displayPieChart() {
-                var data = {
-                    labels: ["ストーリー", "画力", "キャラクター", "世界観"],
-                    datasets: [
-                        {
-                            label: "平均評価",
-                            fillColor: "rgba(200,0,0,0.2)",
-                            strokeColor: "red",
-                            pointColor: "red",
-                            pointStrokeColor: "red",
-                            pointHighlightFill: "red",
-                            pointHighlightStroke: "red",
-                            data: [5, 3, 2, 3]
-                        }
-                    ]
-                };
-                var ctx = document.getElementById("radarChart").getContext("2d");
-                var options = { 
-                  legendTemplate : "<% for (var i=0; i<datasets.length; i++){%><span style=\"background-color:<%=datasets[i].strokeColor%>\">&nbsp;&nbsp;&nbsp;</span>&nbsp;<%if(datasets[i].label){%><%=datasets[i].label%><%}%><br><%}%>"
-                };
-                var radarChart = new Chart(ctx).Radar(data, options);
-                document.getElementById("legend").innerHTML = radarChart.generateLegend();
-              }
         </script>
         <!--
         <?php echo $this->element('sql_dump'); ?>

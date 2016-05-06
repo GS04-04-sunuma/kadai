@@ -19,12 +19,13 @@ class BookEvaluationsController extends AppController {
                         'chara_appeal' => $evaluation['キャラクター'],
                         'world_view' => $evaluation['世界観'],
                         'body' => $evaluation['コメント'],
-                        'created' => $titleName
+                        'created' => date('Y/m/d H:i:s')
                     )
                 );
             $this->BookEvaluation->create($data);
-            $this->Flash->success(__('Your post has been updated.'));
+            $this->BookEvaluation->save();
+            $this->redirect(array('controller' => 'bookdatas', 'action' => 'index'));
+            //$this->Flash->success(__('Your post has been updated.'));
         }
-        return $this->redirect(array('action' => 'view', $id));
     }
 }

@@ -30,3 +30,40 @@
     </div>
 </div>
 
+<script id="script" 
+    story         ='<?php echo $evaluationData[0]; ?>'
+    drawSkill     ='<?php echo $evaluationData[1]; ?>'
+    charaAppeal   ='<?php echo $evaluationData[2]; ?>'
+    worldView     ='<?php echo $evaluationData[3]; ?>'
+></script>
+
+<script>
+    function displayPieChart() {
+        var $script         = $('#script');
+        var story           = JSON.parse($script.attr('story'));
+        var drawSkill       = JSON.parse($script.attr('drawSkill'));
+        var charaAppeal     = JSON.parse($script.attr('charaAppeal'));
+        var worldView       = JSON.parse($script.attr('worldView'));
+        var data = {
+            labels: ["ストーリー", "画力", "キャラクター", "世界観"],
+            datasets: [
+                {
+                    label: "平均評価",
+                    fillColor: "rgba(200,0,0,0.2)",
+                    strokeColor: "red",
+                    pointColor: "red",
+                    pointStrokeColor: "red",
+                    pointHighlightFill: "red",
+                    pointHighlightStroke: "red",
+                    data: [story, drawSkill, charaAppeal, worldView]
+                }
+            ]
+        };
+        var ctx = document.getElementById("radarChart").getContext("2d");
+        var options = { 
+          legendTemplate : "<% for (var i=0; i<datasets.length; i++){%><span style=\"background-color:<%=datasets[i].strokeColor%>\">&nbsp;&nbsp;&nbsp;</span>&nbsp;<%if(datasets[i].label){%><%=datasets[i].label%><%}%><br><%}%>"
+        };
+        var radarChart = new Chart(ctx).Radar(data, options);
+        document.getElementById("legend").innerHTML = radarChart.generateLegend();
+      }
+</script>

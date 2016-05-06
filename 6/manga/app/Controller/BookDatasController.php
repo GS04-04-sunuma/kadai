@@ -27,8 +27,30 @@ class BookDatasController extends AppController {
         $book = $this->BookData->findById($id);
         if (!$book) {
             throw new NotFoundException(__('Invalid book data'));
-        }
+        }        
         $this->set('book', $book);
+        
+        App::import("Model", "BookEvaluation");
+        $bookEvaluation = new BookEvaluation();
+        $bookEvaluations = $bookEvaluation->findAllByBookId($id);
+        $story = 0;
+        $drawingSkill = 0;
+        $charaAppeal = 0;
+        $worldView = 0;
+        foreach($bookEvaluations as $bookEvaluation) {
+            $story += $bookEvaluation['BookEvaluation']['story'];
+            $drawingSkill += $bookEvaluation['BookEvaluation']['drawing_skill'];
+            $charaAppeal += $bookEvaluation['BookEvaluation']['chara_appeal'];
+            $worldView += $bookEvaluation['BookEvaluation']['world_view'];
+        }
+        $count = count($bookEvaluations);
+        $story_average = $story == 0 ? 0 : round($story/$count, 1, PHP_ROUND_HALF_DOWN);
+        $drawingSkill_average = $drawingSkill == 0? 0 : round($drawingSkill/$count, 1, PHP_ROUND_HALF_DOWN);
+        $charaAppeal_average = $charaAppeal == 0? 0 : round($charaAppeal/$count, 1, PHP_ROUND_HALF_DOWN);
+        $worldView_average = $worldView == 0? 0 : round($worldView/$count, 1, PHP_ROUND_HALF_DOWN);
+        
+        $evaluationData = [$story_average, $drawingSkill_average, $charaAppeal_average, $worldView_average];
+        $this->set('evaluationData', $evaluationData);
     }
     
     public function add() {
