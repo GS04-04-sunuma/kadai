@@ -9,20 +9,24 @@
 	・アソシエイトタグ<br>
 
 ### 画面構成
-	トップ画面							www.example.com/manga/　<br>
-	漫画情報取得画面（管理画面）			www.example.com/manga/add/　<br>
-	漫画評価画面							www.example.com/manga/view/　<br>
+	トップ画面		各ランキング表示							www.example.com/manga/　<br>
+	漫画情報取得画面	漫画データ取得&取得したデータ表示			www.example.com/manga/add/　<br>
+	漫画評価画面		漫画評価　								www.example.com/manga/view/　<br>
 
 ###アプリ内容
 ####漫画データの取得
 	manga/add/にて漫画のタイトルを入力　<br>
 ####漫画の評価
-	manga/view/にてストーリー、画力、キャラ、世界観を５段階とコメントを記入 <br>
+	manga/view/[bookId]にてストーリー、画力、キャラ、世界観を５段階とコメントを記入 <br>
+####漫画のランキング更新
+	updateRank/updateRank.phpにアクセスするとランキングデータを更新（※今後はcronを使って定期更新する）
+####漫画のランキング表示
+	manga/にて各ランキングを表示
 
 ###できなかったこと、やりたかったこと
 
 	・評価時にタグを作る機能 <br>
-	・ジャンルやタグごとの評価ランキング <br>
+	~~・ジャンルやタグごとの評価ランキング~~ <br>
 	・facebookやtwitterへの連携 <br>
 	・セキュリティ面の強化 <br>
 	・デザイン <br>
